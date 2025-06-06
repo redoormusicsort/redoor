@@ -1,6 +1,7 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="ko">
 <head>
+<meta charset="UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <title>리도어 노래 소트</title>
@@ -22,9 +23,12 @@ var namMember = new Array(
 "<br>아직도 사랑하면 안 되는 건가요</br>",
 "<br>세상:소음</br>",
 "<br>snow8</br>",
-
+"<br>+</br>",
+"<br>Ron</br>",
+"<br>욕망주사기</br>",
+"<br>Dear Freddy</br>",
+"<br>우리아픈이야기</br>",
 );
-//*********************************************************
 
 var lstMember = new Array();
 var parent = new Array();
@@ -149,7 +153,6 @@ finishSize++;
 }
 }
 else if (head1==lstMember[cmp1].length && head2<lstMember[cmp2].length) {
-//リストcmp1が走査済 - リストcmp2の残りをコピ?
 while (head2<lstMember[cmp2].length){
 rec[nrec] = lstMember[cmp2][head2];
 head2++;
@@ -196,20 +199,27 @@ var sameRank = 1;
 var str = "";
 var i;
 
-str += "<table style=\"width:200px; font-size:12px; line-height:120%; margin-left:auto; margin-right:auto; border:1px solid #000; border-collapse:collapse\" align=\"center\">";
+str += "<table style=\"width:260px; font-size:12px; line-height:100%; margin-left:auto; margin-right:auto; border:1px solid #000; border-collapse:collapse\" align=\"center\">";
 str += "<tr><td style=\"color:#ffffff; background-color:#000; text-align:center;\">순위<\/td><td style=\"color:#ffffff; background-color:#000; text-align:center;\">이름<\/td><\/tr>";
 
 for (i=0; i<namMember.length; i++) {
-str += "<tr><td style=\"border:1px solid #000; text-align:right; padding-right:5px;\">"+ranking+"<\/td><td style=\"border:1px solid #000; padding-left:5px;\">"+namMember[lstMember[0][i]]+"<\/td><\/tr>";
-if (i<namMember.length-1) {
-if (equal[lstMember[0][i]]==lstMember[0][i+1]) {
-sameRank++;
-} else {
-ranking += sameRank;
-sameRank = 1;
+  str += "<tr>";
+  str += "<td style=\"border:1px solid #000; text-align:center; padding: 5px;\">"+ranking+"<\/td>";
+  str += `<td style="border:1px solid #000; padding: 5px 5px 15px 5px; text-align:center">${namMember[lstMember[0][i]]}</td>`;
+
+
+  str += "<\/tr>";
+
+  if (i<namMember.length-1) {
+    if (equal[lstMember[0][i]]==lstMember[0][i+1]) {
+      sameRank++;
+    } else {
+      ranking += sameRank;
+      sameRank = 1;
+    }
+  }
 }
-}
-}
+
 str += "<\/table>";
 
 document.getElementById("resultField").innerHTML = str;
@@ -227,7 +237,6 @@ document.getElementById("rightField").innerHTML = str2;
 numQuestion++;
 }
 
-//数値を名前（顔文字）に変換+++++++++++++++++++++++++++++++
 function toNameFace(n){
 var str = namMember[n];
 
@@ -266,11 +275,6 @@ width: 120px;
 height: 150px;
 border: 1px solid #000;
 }
-.middleField{
-width: 120px;
-height: 70px;
-border: 1px solid #000;
-}
 //-->
 <!--
 A{
@@ -281,32 +285,22 @@ A{
 a:hover{color:#99ccff;}
 -->
 </style>
-<meta name="generator" content="Namo WebEditor(Trial)">
-<meta http-equiv="content-type" content="text/html; charset=utf-8"></head>
+</head>
+<body style="color:#FFFFFF; background-color:#1A3C35;" link="#0099ff" vlink="#0099ff" alink="#0099ff">
 
-<body text="#FFFFFF" bgcolor="#1A3C35" link="#0099ff" vlink="#0099ff" alink="#0099ff">
-<table id="mainTable" align="center">
-<tr>
-        <td id="battleNumber" colspan="3" style="padding-bottom: 10px;">
-            <p>&nbsp;</p>
-        </td>
-</tr>
-<tr>
-<td id="leftField" onClick="if(finishFlag==0)sortList(-1);" rowspan="2">
-&nbsp;
-</td>
-
-</td>
-<td id="rightField" onClick="if(finishFlag==0)sortList(1);" rowspan="2">
-</td>
-</tr>
-<tr>
-</td>
-</tr>
+<table id="mainTable">
+  <tr>
+    <td id="battleNumber" colspan="3" style="padding-bottom: 10px;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td id="leftField" onclick="if(finishFlag==0)sortList(-1);" rowspan="2">&nbsp;</td>
+    <td id="rightField" onclick="if(finishFlag==0)sortList(1);" rowspan="2">&nbsp;</td>
+  </tr>
 </table><br><br>
+
 <div id="resultField" style="text-align:center;">
-    <p><font size="2" face="돋움"><span style="">리도어 노래 소트</font></p>
-    <p><font size="2" face="돋움">25.03 ver. @emde0_0</font></p>
+  <p style="font-size:12px; font-family:'돋움';">리도어 노래 소트</p>
+  <p style="font-size:12px; font-family:'돋움';">25.06 ver. @emde0_0</p>
 
 </div>
 <script type="text/javascript">
